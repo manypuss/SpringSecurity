@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<h2>
+    All Users
+</h2>
+<br>
+<table cellspacing="3" bgcolor="#000000">
+    <thead>
+    <tr bgcolor="#ffffff">
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Department</th>
+        <th>Salary</th>
+        <th>Password</th>
+        <th>Roles</th>
+        <th>Operation</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr bgcolor="#ffffff" th:each="user : ${allUsers}">
+        <td th:text="${user.getUsername()}"></td>
+        <td th:text="${user.getUsersurname()}"></td>
+        <td th:text="${user.getDepartment()}"></td>
+        <td th:text="${user.getSalary()}"></td>
+        <td th:text="${user.getPassword()}"></td>
+        <td th:text="${user.getAuthorities()}"></td>
+        <td>
+            <table>
+                <tr>
+                    <td>
+                        <form th:method="GET" th:action="@{/admin/edit}" th:object="${user}">
+                            <input type="submit" value="Edit"/>
+                            <input type="hidden" name="id" th:value="${user.getId()}"/>
+                        </form>
+                    </td>
+                    <td>
+                        <form th:method="POST" th:action="@{/admin/delete}" th:object="${user}">
+                            <input type="submit" value="Delete"/>
+                            <input type="hidden" name="id" th:value="${user.getId()}"/>
+                        </form>
+                    </td>
+                    <td>
+                        <form th:method="GET" th:action="@{/user}" th:object="${user}">
+                            <input type="submit" value="Profile"/>
+                            <input type="hidden" name="id" th:value="${user.getId()}"/>
+                        </form>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<br>
+<table>
+    <tr>
+        <td>
+            <form th:method="GET" th:action="@{admin/addNewUser}">
+                <input type="submit" value="Add"/>
+            </form>
+        </td>
+        <td>
+            <form th:method="GET" th:action="@{/logout}">
+                <input type="submit" value="Exit"/>
+            </form>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

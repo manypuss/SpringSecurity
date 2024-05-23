@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<h2>
+    User Profile
+</h2>
+<br>
+<form th:method="POST" th:action="@{/user}" th:object="${user}">
+    <label for="name">Username: </label>
+    <td th:text="${user.getUsername()}" id="name"><td/>
+    <br/><br/>
+    <label for="surname">Usersurname: </label>
+    <td th:text="${user.getUsersurname()}" id="surname"><td/>
+    <br/><br/>
+    <label for="department">Department: </label>
+    <td th:text="${user.getDepartment()}" id="department"><td/>
+    <br/><br/>
+    <label for="salary">Salary: </label>
+    <td th:text="${user.getSalary()}" id="salary"><td/>
+    <br/><br/>
+</form>
+<form th:method="GET" th:action="@{/logout}">
+    <input type="submit" value="Exit"/>
+</form>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<h2>
+    User Info
+</h2>
+<br>
+<form th:method="POST" th:action="@{/admin/saveNewUser}" th:object="${user}">
+    <input type="hidden" name="id" th:value="${user.getId()}"/>
+    <label for="name">Enter name: </label>
+    <input type="text" th:field="*{username}" id="name">
+    <br/><br/>
+    <label for="surname">Enter surname: </label>
+    <input type="text" th:field="*{usersurname}" id="surname">
+    <br/><br/>
+    <label for="department">Enter department: </label>
+    <input type="text" th:field="*{department}" id="department">
+    <br/><br/>
+    <label for="salary">Enter salary: </label>
+    <input type="text" th:field="*{salary}" id="salary">
+    <br/><br/>
+    <label for="password">Enter password: </label>
+    <input type="text" th:field="*{password}" id="password">
+    <br/><br/>
+    <label>Roles:</label><br>
+    <div th:each="role : ${allRoles}">
+        <input type="checkbox" id="role_${role.id}" name="roleIds" th:value="${role.getId()}"
+               th:checked="${user.getRoles() != null and user.getRoles().contains(role)}"
+               th:attr="required=${role == allRoles[1]}">
+        <label for="role_${role.id}" th:text="${role.getName()}"></label><br>
+    </div><br>
+    <br/><br/>
+    <input type="submit" value="OK"/>
+</form>
+</body>
+</html>
+
