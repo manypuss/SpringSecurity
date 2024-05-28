@@ -33,19 +33,19 @@
             <table>
                 <tr>
                     <td>
-                        <form th:method="GET" th:action="@{/admin/edit}" th:object="${user}">
+                        <form th:method="GET" th:action="@{/admin/edit}">
                             <input type="submit" value="Edit"/>
                             <input type="hidden" name="id" th:value="${user.getId()}"/>
                         </form>
                     </td>
                     <td>
-                        <form th:method="POST" th:action="@{/admin/delete}" th:object="${user}">
+                        <form th:method="POST" th:action="@{/admin/delete}">
                             <input type="submit" value="Delete"/>
                             <input type="hidden" name="id" th:value="${user.getId()}"/>
                         </form>
                     </td>
                     <td>
-                        <form th:method="GET" th:action="@{/user}" th:object="${user}">
+                        <form th:method="GET" th:action="@{/user}">
                             <input type="submit" value="Profile"/>
                             <input type="hidden" name="id" th:value="${user.getId()}"/>
                         </form>
